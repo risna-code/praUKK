@@ -6,15 +6,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { 
   Home, 
   FileText, 
-  CheckCircle, 
   LogOut, 
   Menu, 
   Shield, 
   User, 
-  Settings, 
-  PlusCircle,
+  Users,
+  MessageSquareQuote,
   BarChart3,
-  X
+  X,
+  Trash2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -27,10 +27,13 @@ export const Sidebar = () => {
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const navLinks = isAdmin ? [
-    { href: '/dashboard/admin', label: 'Overview', icon: <BarChart3 className="w-5 h-5" /> },
-    { href: '/dashboard/admin/reports', label: 'Manage Reports', icon: <FileText className="w-5 h-5" /> },
-    { href: '/dashboard/admin/resolved', label: 'Resolved', icon: <CheckCircle className="w-5 h-5" /> },
-    { href: '/dashboard/admin/settings', label: 'Settings', icon: <Settings className="w-5 h-5" /> },
+    { href: '/dashboard/admin', label: 'Beranda', icon: <Home className="w-5 h-5" /> },
+    { href: '/dashboard/admin/siswa', label: 'Siswa', icon: <Users className="w-5 h-5" /> },
+    { href: '/dashboard/admin/admin', label: 'Admin', icon: <User className="w-5 h-5" /> },
+    { href: '/dashboard/admin/riwayat-laporan', label: 'Riwayat Laporan', icon: <FileText className="w-5 h-5" /> },
+    { href: '/dashboard/admin/riwayat-hapus', label: 'Riwayat Hapus', icon: <Trash2 className="w-5 h-5" /> },
+    { href: '/dashboard/admin/testimoni', label: 'Testimoni', icon: <MessageSquareQuote className="w-5 h-5" /> },
+    { href: '/dashboard/admin/statistik', label: 'Statistik', icon: <BarChart3 className="w-5 h-5" /> },
   ] : [
     { href: '/dashboard/student', label: 'Beranda', icon: <Home className="w-5 h-5" /> },
     { href: '/dashboard/student/history', label: 'Riwayat Laporan', icon: <FileText className="w-5 h-5" /> },
@@ -68,14 +71,14 @@ export const Sidebar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={toggleSidebar}
-              className="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[60] lg:hidden"
+              className="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-60 lg:hidden"
             />
             <motion.aside 
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 left-0 bottom-0 w-72 bg-white z-[70] p-6 lg:hidden flex flex-col"
+              className="fixed top-0 left-0 bottom-0 w-72 bg-white z-70 p-6 lg:hidden flex flex-col"
             >
                <div className="flex items-center justify-between mb-12">
                   <div className="flex items-center gap-2 text-green-600">
@@ -108,7 +111,7 @@ export const Sidebar = () => {
                   className="w-full mt-auto flex items-center gap-3 px-4 py-4 rounded-2xl font-bold text-red-500 bg-red-50"
                >
                   <LogOut size={20} />
-                  Sign Out
+                  Logout
                </button>
             </motion.aside>
           </>
@@ -116,9 +119,9 @@ export const Sidebar = () => {
       </AnimatePresence>
 
       {/* DESKTOP SIDEBAR */}
-      <aside className="hidden lg:flex w-72 flex-col h-screen sticky top-0 bg-white/40 backdrop-blur-2xl border-r border-white/50 p-6 z-50">
+      <aside className="hidden lg:flex w-72 flex-col h-screen sticky top-0 bg-white border-r border-gray-200 p-6 z-50 flex-shrink-0">
         <div className="flex items-center gap-3 mb-12 px-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-lg shadow-green-500/20">
+          <div className="w-10 h-10 rounded-xl bg-linear-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-lg shadow-green-500/20">
             <Shield size={22} />
           </div>
           <div>
@@ -152,7 +155,7 @@ export const Sidebar = () => {
         </nav>
 
         <div className="mt-auto space-y-4">
-          <div className="bg-white/60 p-4 rounded-2xl border border-white/50 shadow-sm mb-6">
+          <div className="bg-gray-50 p-4 rounded-2xl border border-gray-200 shadow-sm mb-6">
              <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-black">
                   {isAdmin ? "AD" : "ST"}
@@ -169,7 +172,7 @@ export const Sidebar = () => {
             className="w-full flex items-center gap-3 px-4 py-4 rounded-2xl font-bold text-red-400 hover:bg-red-50 hover:text-red-500 transition-all group"
           >
             <LogOut size={20} className="group-hover:-translate-x-1 transition-transform" />
-            Sign Out
+            Logout
           </button>
         </div>
       </aside>

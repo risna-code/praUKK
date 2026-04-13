@@ -5,43 +5,7 @@ import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 
 export const Testimoni = () => {
-  const testimonials = [
-    {
-      name: "Budi Santoso",
-      role: "Siswa Kelas KKP",
-      message: "Proses laporannya sangat cepat, AC di lab komputer kami bocor dan keesokan harinya langsung diperbaiki oleh tim teknisi sekolah.",
-      avatar: "https://i.pravatar.cc/150?img=11",
-      rating: 5
-    },
-    {
-      name: "Siti Rahmawati",
-      role: "Guru Bahasa Inggris",
-      message: "Sangat transparan. Saya bisa melihat sejauh mana laporan mic kelas yang rusak telah diproses melalui HP saya. Sangat efisien!",
-      avatar: "https://i.pravatar.cc/150?img=5",
-      rating: 5
-    },
-    {
-      name: "Andi Wijaya",
-      role: "Siswa Kelas TKJ",
-      message: "UI nya sangat bagus dan gampang dipakai. Temen-temen ga perlu lagi bolak balik ke ruang sarpras buat lapor mouse yang rusak.",
-      avatar: "https://i.pravatar.cc/150?img=12",
-      rating: 4
-    },
-    {
-      name: "Dewi Lestari",
-      role: "Siswa Kelas Tata Boga",
-      message: "Senang sekali oven di lab boga sekarang sudah diperbaiki. Respon dari sekolah sangat cepat setelah saya melapor lewat aplikasi.",
-      avatar: "https://i.pravatar.cc/150?img=32",
-      rating: 5
-    },
-    {
-      name: "Fajar Pratama",
-      role: "Siswa Kelas RPL",
-      message: "Projector di kelas 11 RPL yang buram langsung diganti unit baru. Jadi makin semangat belajar coding!",
-      avatar: "https://i.pravatar.cc/150?img=13",
-      rating: 5
-    }
-  ];
+  const testimonials: any[] = [];
 
   // Duplicate for seamless marquee
   const marqueeItems = [...testimonials, ...testimonials];

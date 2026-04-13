@@ -3,11 +3,16 @@
 import React from "react";
 import { Shield, Mail, Phone, MapPin, Globe, MessageSquare, Send } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 export const Footer = () => {
+  const socialIcons = [
+    { Icon: MessageSquare, label: "WhatsApp", id: "social-wa" },
+    { Icon: Globe, label: "Website", id: "social-web" },
+    { Icon: Send, label: "Telegram", id: "social-tg" }
+  ];
+
   return (
-    <footer className="relative mt-20 pb-12 px-4 overflow-hidden">
+    <footer className="relative mt-20 pb-12 px-4 overflow-hidden" suppressHydrationWarning>
       {/* Decorative Top Line Gradient */}
       <div className="max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-green-200 to-transparent mb-12 opacity-50"></div>
 
@@ -28,9 +33,15 @@ export const Footer = () => {
             <p className="text-gray-500 font-medium leading-relaxed max-w-sm">
               Mewujudkan transparansi pemeliharaan sarana prasarana sekolah demi kenyamanan belajar mengajar yang modern dan amanah.
             </p>
-            <div className="flex items-center gap-4">
-               {[MessageSquare, Globe, Send].map((Icon, i) => (
-                  <button key={i} className="w-10 h-10 rounded-xl bg-white shadow-md shadow-green-900/5 flex items-center justify-center text-gray-400 hover:text-green-500 hover:scale-110 transition-all duration-300">
+            <div className="flex items-center gap-4" suppressHydrationWarning>
+               {socialIcons.map(({ Icon, label, id }) => (
+                  <button 
+                    key={id}
+                    type="button"
+                    aria-label={label}
+                    suppressHydrationWarning
+                    className="w-10 h-10 rounded-xl bg-white shadow-md shadow-green-900/5 flex items-center justify-center text-gray-400 hover:text-green-500 hover:scale-110 transition-all duration-300"
+                  >
                     <Icon size={18} />
                   </button>
                ))}

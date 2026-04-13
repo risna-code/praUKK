@@ -32,92 +32,7 @@ export const Laporan = ({ onLoginClick }: { onLoginClick: () => void }) => {
     "Menunggu"
   ];
 
-  const mockReports = [
-    { 
-      id: "RPT-001", 
-      kategori: "Ruang Kelas",
-      image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=400&fit=crop",
-      judul: "AC Ruang Kelas Bocor Menetes", 
-      deskripsi: "AC di kelas berasap sedikit dan terus meneteskan air ke bangku barisan paling belakang tengah, mohon segera ditangani.",
-      status: "Selesai", 
-      tglUpload: "08 Apr 2026",
-      tglSelesai: "09 Apr 2026",
-      rating: 5,
-      warnaStatus: "bg-green-100 text-green-700 border-green-200",
-      icon: <CheckCircle2 size={16} />,
-      rawDate: new Date("2026-04-08").getTime()
-    },
-    { 
-      id: "RPT-002", 
-      kategori: "Kamar Mandi",
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&fit=crop",
-      judul: "Keran Air Wastafel Patah", 
-      deskripsi: "Tuas keran patah di wastafel utama putra, air tidak bisa dimatikan dengan sempurna.",
-      status: "Selesai", 
-      tglUpload: "10 Apr 2026",
-      tglSelesai: "10 Apr 2026",
-      rating: 4,
-      warnaStatus: "bg-green-100 text-green-700 border-green-200",
-      icon: <CheckCircle2 size={16} />,
-      rawDate: new Date("2026-04-10").getTime()
-    },
-    { 
-      id: "RPT-003", 
-      kategori: "Lab RPL",
-      image: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=400&fit=crop",
-      judul: "Proyektor Buram Bergaris", 
-      deskripsi: "Proyektor di lab komputer 1 menampilkan warna dominan kuning dan ada garis hitam lurus di tengah layar saat coding.",
-      status: "Diproses", 
-      tglUpload: "10 Apr 2026",
-      tglSelesai: "Menunggu teknisi",
-      rating: 0,
-      warnaStatus: "bg-blue-100 text-blue-700 border-blue-200",
-      icon: <Clock size={16} />,
-      rawDate: new Date("2026-04-10T12:00:00").getTime()
-    },
-    { 
-      id: "RPT-004", 
-      kategori: "Ruang Pertemuan",
-      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=400&fit=crop",
-      judul: "Meja Rapat Keropos", 
-      deskripsi: "Kaki meja utama keropos berjamur dan mulai goyang saat dipakai presentasi pimpinan.",
-      status: "Selesai", 
-      tglUpload: "05 Apr 2026",
-      tglSelesai: "07 Apr 2026",
-      rating: 5,
-      warnaStatus: "bg-green-100 text-green-700 border-green-200",
-      icon: <CheckCircle2 size={16} />,
-      rawDate: new Date("2026-04-05").getTime()
-    },
-    { 
-      id: "RPT-005", 
-      kategori: "Kantin",
-      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=400&fit=crop",
-      judul: "Lampu Area Makan Mati", 
-      deskripsi: "Tiga unit bohlam di area makan tengah kantin putus berbarengan.",
-      status: "Menunggu", 
-      tglUpload: "11 Apr 2026",
-      tglSelesai: "-",
-      rating: 0,
-      warnaStatus: "bg-yellow-100 text-yellow-700 border-yellow-200",
-      icon: <AlertCircle size={16} />,
-      rawDate: new Date("2026-04-11").getTime()
-    },
-    { 
-      id: "RPT-006", 
-      kategori: "Parkiran",
-      image: "https://images.unsplash.com/photo-1494059980473-813e73ee784b?q=80&w=400&fit=crop",
-      judul: "Paving Block Retak", 
-      deskripsi: "Paving block di area parkir motor siswa bagian timur retak dan membuat area parkir tidak rata.",
-      status: "Menunggu", 
-      tglUpload: "12 Apr 2026",
-      tglSelesai: "-",
-      rating: 0,
-      warnaStatus: "bg-yellow-100 text-yellow-700 border-yellow-200",
-      icon: <AlertCircle size={16} />,
-      rawDate: new Date("2026-04-12").getTime()
-    }
-  ];
+  const mockReports: any[] = [];
 
   /* Filtering Logic */
   let filteredReports = [...mockReports];
@@ -304,6 +219,7 @@ export const Laporan = ({ onLoginClick }: { onLoginClick: () => void }) => {
                  <div className="mt-4 text-center bg-white/50 backdrop-blur py-4 rounded-2xl border border-white hover:bg-white transition-colors w-full group">
                     <button 
                       onClick={() => setShowPopup(true)} // Open Full Modal
+                      suppressHydrationWarning
                       className="text-green-600 font-extrabold hover:text-green-700 transition-all flex items-center justify-center gap-3 mx-auto group-hover:scale-105"
                     >
                        Muat Lebih Banyak
@@ -336,6 +252,7 @@ export const Laporan = ({ onLoginClick }: { onLoginClick: () => void }) => {
                   <div className="block w-full">
                     <button 
                       onClick={onLoginClick}
+                      suppressHydrationWarning
                       className="w-full bg-white text-green-600 py-4 px-6 rounded-2xl font-black text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 group"
                     >
                       <LogIn size={20} className="group-hover:translate-x-1 transition-transform" />

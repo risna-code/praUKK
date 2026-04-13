@@ -70,7 +70,7 @@ export const Hero = () => {
                   <input type="radio" className="mask mask-star-2 bg-yellow-400" checked disabled />
                 </div>
               </div>
-              <span className="text-sm text-gray-700 font-bold">4.9 <span className="text-gray-500 font-medium">dari 120+ siswa</span></span>
+              <span className="text-sm text-gray-700 font-bold">0 <span className="text-gray-500 font-medium">dari 0 siswa</span></span>
             </div>
 
             <div className="hidden md:block w-px h-8 bg-green-200/50"></div>
@@ -80,7 +80,7 @@ export const Hero = () => {
               <div className="w-8 h-8 rounded-full clay-green flex items-center justify-center text-white flex-shrink-0">
                 <ShieldCheck size={16} />
               </div>
-              <span className="text-sm font-bold text-gray-700">150+ <span className="font-medium text-gray-500">Laporan masuk</span></span>
+              <span className="text-sm font-bold text-gray-700">0 <span className="font-medium text-gray-500">Laporan masuk</span></span>
             </div>
 
             <div className="hidden md:block w-px h-8 bg-green-200/50"></div>
@@ -92,7 +92,7 @@ export const Hero = () => {
                   <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
                 </svg>
               </div>
-              <span className="text-sm font-bold text-gray-700">120+ <span className="font-medium text-gray-500">Selesai ditangani</span></span>
+              <span className="text-sm font-bold text-gray-700">0 <span className="font-medium text-gray-500">Selesai ditangani</span></span>
             </div>
             
           </motion.div>

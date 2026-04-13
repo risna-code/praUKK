@@ -16,9 +16,7 @@ import {
   Pencil,
   ShieldCheck,
   Star,
-  PlusCircle,
-  Zap,
-  Sparkles
+  PlusCircle
 } from "lucide-react";
 
 import Link from "next/link";
@@ -33,70 +31,7 @@ export default function ReportHistory() {
   const statuses = ["Semua", "Proses", "Selesai", "Menunggu", "Ditolak"];
 
   // FULL REPORTS LIST WITH XP REWARDS
-  const [reports, setReports] = useState<any[]>([
-    { 
-      id: "RPT-102", 
-      subject: "AC Lab RPL Bocor", 
-      status: "Proses", 
-      date: "10 Apr 2026", 
-      createdAt: "10 Apr 2026 08:30",
-      solvedAt: null,
-      handlingDuration: null,
-      type: "Fasilitas Lab", 
-      exp: 75,
-      image: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=600&fit=crop",
-      desc: "AC di Lab RPL 1 meneteskan air cukup deras di atas bangku barisan belakang. Hal ini mengganggu kenyamanan saat praktikum.",
-      location: "Gedung B, Lantai 2, Lab RPL 1",
-      steps: [
-        { label: "Lapor", date: "10 Apr", time: "08:30", status: "completed" },
-        { label: "Verif", date: "10 Apr", time: "09:15", status: "completed" },
-        { label: "Proses", date: "11 Apr", time: "10:00", status: "active" },
-        { label: "Selesai", date: "--", time: "--", status: "pending" },
-      ]
-    },
-    { 
-      id: "RPT-085", 
-      subject: "Kursi Kantin Goyang", 
-      status: "Selesai", 
-      date: "02 Apr 2026", 
-      createdAt: "02 Apr 2026 12:45",
-      solvedAt: "05 Apr 2026 15:20",
-      handlingDuration: "2 Hari 3 Jam",
-      type: "Lingkungan", 
-      exp: 50,
-      image: "https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=600&fit=crop",
-      desc: "Satu set kursi di area kantin tengah goyang dan hampir patah kaki depannya. Bahaya jika diduduki siswa.",
-      location: "Area Kantin, Meja 12",
-      rating: 4,
-      ratingComment: "Sangat membantu, sekarang kursi sudah kokoh kembali.",
-      steps: [
-        { label: "Lapor", date: "02 Apr", time: "12:45", status: "completed" },
-        { label: "Verif", date: "02 Apr", time: "14:00", status: "completed" },
-        { label: "Proses", date: "03 Apr", time: "09:00", status: "completed" },
-        { label: "Selesai", date: "05 Apr", time: "15:20", status: "completed" },
-      ]
-    },
-    { 
-        id: "RPT-077", 
-        subject: "Lampu Kelas Redup", 
-        status: "Menunggu", 
-        date: "01 Apr 2026", 
-        createdAt: "01 Apr 2026 07:15",
-        solvedAt: null,
-        handlingDuration: null,
-        type: "Ruang Kelas", 
-        exp: 60,
-        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&fit=crop",
-        desc: "Lampu di bagian depan kelas X-RPL redup dan sering berkedip, mengganggu saat guru menjelaskan.",
-        location: "Gedung A, Lantai 1, Kelas X-RPL",
-        steps: [
-          { label: "Lapor", date: "01 Apr", time: "07:15", status: "completed" },
-          { label: "Verif", date: "--", time: "--", status: "pending" },
-          { label: "Proses", date: "--", time: "--", status: "pending" },
-          { label: "Selesai", date: "--", time: "--", status: "pending" },
-        ]
-    },
-  ]);
+  const [reports, setReports] = useState<any[]>([]);
 
   const filteredReports = reports.filter(report => {
     const matchesSearch = report.subject.toLowerCase().includes(searchQuery.toLowerCase()) || report.id.toLowerCase().includes(searchQuery.toLowerCase());
@@ -134,15 +69,11 @@ export default function ReportHistory() {
                <div className="h-48 w-full relative overflow-hidden">
                   <img src={report.image} alt={report.subject} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   
-                  {/* XP REWARD BADGE */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                  {/* BADGE */}
+                  <div className="absolute top-4 left-4">
                      <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-white/50">
                         <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest block leading-none mb-1">ID: {report.id}</span>
                         <span className="text-[10px] font-black text-green-600 uppercase tracking-wider">{report.type}</span>
-                     </div>
-                     <div className="bg-amber-400/90 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-amber-300/50 flex items-center gap-1.5 w-fit">
-                        <Zap size={10} className="text-white fill-current" />
-                        <span className="text-[10px] font-black text-white uppercase tracking-tighter">+{report.exp} XP</span>
                      </div>
                   </div>
 
@@ -190,7 +121,6 @@ export default function ReportHistory() {
                  <div className="p-10 space-y-10">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col gap-1"><span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Lokasi</span><div className="flex items-center gap-2"><MapPin size={12} className="text-green-500" /><span className="text-[10px] font-bold text-gray-700">{selectedReport.location}</span></div></div>
-                       <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col gap-1"><span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Reward XP</span><div className="flex items-center gap-2"><Zap size={12} className="text-amber-500 fill-current" /><span className="text-[10px] font-black text-gray-800">+{selectedReport.exp} XP</span></div></div>
                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col gap-1"><span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Status</span><div className="flex items-center gap-2"><div className={`w-2 h-2 rounded-full ${selectedReport.status === 'Selesai' ? 'bg-green-500' : 'bg-amber-400'}`}></div><span className="text-[10px] font-black uppercase text-gray-700">{selectedReport.status}</span></div></div>
                        {selectedReport.solvedAt && (<div className="bg-green-50 p-4 rounded-2xl border border-green-100 flex flex-col gap-1"><span className="text-[8px] font-black text-green-600 uppercase tracking-widest">Ditutup</span><div className="flex items-center gap-2"><CheckCircle2 size={12} className="text-green-600" /><span className="text-[10px] font-black text-green-700">{selectedReport.solvedAt}</span></div></div>)}
                     </div>

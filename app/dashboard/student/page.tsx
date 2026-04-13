@@ -22,13 +22,8 @@ import {
   Smile,
   Circle,
   Pencil,
-  AlertTriangle,
   Timer,
-  Camera,
-  Upload,
-  ChevronRight,
-  Zap,
-  Sparkles
+  Upload
 } from "lucide-react";
 
 import Link from "next/link";
@@ -50,80 +45,8 @@ export default function StudentDashboard() {
   const categories = ["Fasilitas Lab", "Lingkungan", "Ruang Kelas", "Kantin"];
   const statuses = ["Semua", "Proses", "Selesai", "Menunggu"];
 
-  // REACIVE REPORTS STATE with XP REWARDS
-  const [reports, setReports] = useState<any[]>([
-    { 
-      id: "RPT-102", 
-      subject: "AC Lab RPL Bocor", 
-      status: "Proses", 
-      date: "10 Apr 2026", 
-      createdAt: "10 Apr 2026 08:30",
-      solvedAt: null,
-      handlingDuration: null,
-      type: "Fasilitas Lab", 
-      exp: 75,
-      image: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=600&fit=crop",
-      desc: "AC di Lab RPL 1 meneteskan air cukup deras di atas bangku barisan belakang. Hal ini mengganggu kenyamanan saat praktikum.",
-      location: "Gedung B, Lantai 2, Lab RPL 1",
-      lastEditDate: null,
-      rating: null,
-      ratingComment: "",
-      steps: [
-        { label: "Lapor", date: "10 Apr", time: "08:30", status: "completed" },
-        { label: "Verif", date: "10 Apr", time: "09:15", status: "completed" },
-        { label: "Proses", date: "11 Apr", time: "10:00", status: "active" },
-        { label: "Selesai", date: "--", time: "--", status: "pending" },
-      ]
-    },
-    { 
-      id: "RPT-085", 
-      subject: "Kursi Kantin Goyang", 
-      status: "Selesai", 
-      date: "02 Apr 2026", 
-      createdAt: "02 Apr 2026 12:45",
-      solvedAt: "05 Apr 2026 15:20",
-      handlingDuration: "2 Hari 3 Jam",
-      type: "Lingkungan", 
-      exp: 50,
-      image: "https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=600&fit=crop",
-      desc: "Satu set kursi di area kantin tengah goyang dan hampir patah kaki depannya. Bahaya jika diduduki siswa.",
-      location: "Area Kantin, Meja 12",
-      lastEditDate: null,
-      rating: 4,
-      ratingComment: "Sangat membantu, sekarang kursi sudah kokoh kembali.",
-      steps: [
-        { label: "Lapor", date: "02 Apr", time: "12:45", status: "completed" },
-        { label: "Verif", date: "02 Apr", time: "14:00", status: "completed" },
-        { label: "Proses", date: "03 Apr", time: "09:00", status: "completed" },
-        { label: "Selesai", date: "05 Apr", time: "15:20", status: "completed" },
-      ]
-    },
-    { 
-        id: "RPT-077", 
-        subject: "Lampu Kelas Redup", 
-        status: "Menunggu", 
-        date: "01 Apr 2026", 
-        createdAt: "01 Apr 2026 07:15",
-        solvedAt: null,
-        handlingDuration: null,
-        type: "Ruang Kelas", 
-        exp: 60,
-        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&fit=crop",
-        desc: "Lampu di bagian depan kelas X-RPL redup dan sering berkedip, mengganggu saat guru menjelaskan.",
-        location: "Gedung A, Lantai 1, Kelas X-RPL",
-        lastEditDate: null,
-        rating: null,
-        ratingComment: "",
-        steps: [
-          { label: "Lapor", date: "01 Apr", time: "07:15", status: "completed" },
-          { label: "Verif", date: "--", time: "--", status: "pending" },
-          { label: "Proses", date: "--", time: "--", status: "pending" },
-          { label: "Selesai", date: "--", time: "--", status: "pending" },
-        ]
-      },
-  ]);
-
-  const [testimony, setTestimony] = useState<any>({ id: 1, text: "Layanan sangat cepat! AC langsung dibenahi dalam 2 jam.", rating: 5, date: "09 Apr 2026" });
+  const [reports, setReports] = useState<any[]>([]);
+  const [testimony, setTestimony] = useState<any>(null);
 
   // Chat States
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -149,7 +72,6 @@ export default function StudentDashboard() {
       createdAt: `${dateStr} ${timeStr}`,
       solvedAt: null,
       handlingDuration: null,
-      exp: 50, // Default reward for new report
       image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&fit=crop",
       lastEditDate: null,
       rating: null,
@@ -248,15 +170,10 @@ export default function StudentDashboard() {
                          <div className="h-44 w-full relative overflow-hidden">
                             <img src={report.image} alt={report.subject} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                             
-                            {/* XP REWARD BADGE */}
-                            <div className="absolute top-4 left-4 flex flex-col gap-2">
+                            <div className="absolute top-4 left-4">
                                <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-white/50">
                                   <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest block leading-none mb-1">ID: {report.id}</span>
                                   <span className="text-[10px] font-black text-green-600 uppercase tracking-wider">{report.type}</span>
-                               </div>
-                               <div className="bg-amber-400/90 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-amber-300/50 flex items-center gap-1.5 w-fit">
-                                  <Zap size={10} className="text-white fill-current" />
-                                  <span className="text-[10px] font-black text-white uppercase tracking-tighter">+{report.exp} XP</span>
                                </div>
                             </div>
 
@@ -304,16 +221,6 @@ export default function StudentDashboard() {
                      <div className="p-8 border-2 border-dashed border-gray-100 rounded-[2rem] flex flex-col items-center justify-center text-center group hover:bg-green-50/30 transition-all cursor-pointer"><div className="w-12 h-12 bg-white shadow-xl rounded-2xl flex items-center justify-center text-gray-300 group-hover:text-green-500 transition-colors mb-3"><Upload className="w-6 h-6" /></div><p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Klik untuk Unggah Foto Bukti</p></div>
                   </div>
 
-                  <div className="p-6 bg-amber-50 rounded-3xl border border-amber-100 flex items-center justify-between mb-8 group">
-                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-amber-400 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-amber-400/20 group-hover:scale-110 transition-transform"><Sparkles size={20} /></div>
-                        <div>
-                           <p className="text-sm font-black text-gray-800 leading-none">Hadiah Penyelesaian</p>
-                           <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest mt-1.5 leading-none">Dapatkan +50 XP dari laporan ini</p>
-                        </div>
-                     </div>
-                  </div>
-
                   <div className="flex gap-4 mt-8"><button onClick={() => setIsCreateModalOpen(false)} className="flex-1 py-5 rounded-2xl font-black text-xs uppercase tracking-widest bg-gray-50 text-gray-400 hover:bg-gray-100 transition-all">Batal</button><button onClick={handleCreateNewReport} className="flex-1 py-5 rounded-2xl font-black text-xs uppercase tracking-widest bg-green-600 text-white shadow-xl shadow-green-600/20 hover:scale-[1.02] active:scale-95 transition-all">Kirim Laporan</button></div>
                </motion.div>
             </div>
@@ -330,7 +237,6 @@ export default function StudentDashboard() {
                  <div className="p-10 space-y-10">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col gap-1"><span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Lokasi</span><div className="flex items-center gap-2"><MapPin size={12} className="text-green-500" /><span className="text-[10px] font-bold text-gray-700">{selectedReport.location}</span></div></div>
-                       <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col gap-1"><span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Reward XP</span><div className="flex items-center gap-2"><Zap size={12} className="text-amber-500 fill-current" /><span className="text-[10px] font-black text-gray-800">+{selectedReport.exp} XP</span></div></div>
                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col gap-1"><span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Status</span><div className="flex items-center gap-2"><div className={`w-2 h-2 rounded-full ${selectedReport.status === 'Selesai' ? 'bg-green-500' : 'bg-amber-400'}`}></div><span className="text-[10px] font-black uppercase text-gray-700">{selectedReport.status}</span></div></div>
                        {selectedReport.solvedAt && (<div className="bg-green-50 p-4 rounded-2xl border border-green-100 flex flex-col gap-1"><span className="text-[8px] font-black text-green-600 uppercase tracking-widest">Ditutup</span><div className="flex items-center gap-2"><CheckCircle2 size={12} className="text-green-600" /><span className="text-[10px] font-black text-green-700">{selectedReport.solvedAt}</span></div></div>)}
                     </div>
